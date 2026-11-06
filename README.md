@@ -49,6 +49,10 @@ view, so nothing about how bb works changes.
   Hide, rename, reorder, and give any folder an icon and a colour.
   The folders sync across your devices; the last 20 versions are kept, and
   deleting, resetting and restoring ask first.
+- **Chat icons.** Every chat's avatar wears an icon picked from words in its
+  title, on its project's colour; titles no rule knows get a stable icon of
+  their own. Right-click a chat → **Chat icon…** to pick another; the pick
+  syncs across your devices.
 - **Project colours.** Clear colours are assigned automatically, so a few
   projects never look alike. Right-click a project to pick one of 15. The pick
   syncs across your devices, and a folder about one project wears its

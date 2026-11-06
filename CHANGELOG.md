@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.9-icons.1
+
+- Each chat's avatar shows an icon instead of a letter. The icon comes from
+  words in the chat's title (fix → bug, deploy → rocket, payment → card, and
+  about forty more rules in English and Russian); a title no rule matches gets
+  a stable icon from a neutral set by a hash of the title.
+- Right-click a chat → **Chat icon…** to pick any folder icon by hand, or go
+  back to the one from the title. Picks sync across devices.
+
 ## 0.2.8
 
 - Add a **Last 24 hours** smart folder alongside **Today**. Any custom folder
