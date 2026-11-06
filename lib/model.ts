@@ -481,3 +481,8 @@ export function isQuiet(row: Chat, cutoff: number): boolean {
 export function initialOf(name: string): string {
   return (name.trim().match(/[\p{L}\p{N}]/u)?.[0] ?? "•").toLocaleUpperCase();
 }
+
+/** A row's avatar letter: the project's, or the chat's own in the personal project. */
+export function avatarLetter(row: Chat): string {
+  return initialOf(row.project && !row.project.isPersonal ? row.project.name : row.thread.displayTitle);
+}

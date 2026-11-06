@@ -20,7 +20,7 @@ import type { MessageMatch } from "@/hooks/use-message-search";
 import { useRefreshMuted } from "@/hooks/use-muted";
 import { useSortableItem, type SortableBindings } from "@/hooks/use-sortable";
 import { avatarBackground } from "@/lib/colors";
-import type { Chat } from "@/lib/model";
+import { avatarLetter, type Chat } from "@/lib/model";
 import { statusMessage } from "@/lib/status";
 import { formatChatTime } from "@/lib/time";
 import { cn } from "@/lib/utils";
@@ -36,6 +36,7 @@ import { toActionTarget } from "./thread-actions";
 export type ProviderSummary = ReturnType<typeof experimental_useProviders>["providers"][number];
 
 function Avatar({ row, size }: { row: Chat; size: "md" | "sm" }) {
+  const { avatar } = useChat().settings;
   const color = useProjectColors().colorOf(row.project?.id ?? null, row.thread.id);
   const icon = useChatIcons().iconOf(row.thread.id, row.thread.displayTitle);
   const busy = row.lane === "working" || row.lane === "attention";
@@ -48,7 +49,11 @@ function Avatar({ row, size }: { row: Chat; size: "md" | "sm" }) {
       )}
       style={{ background: avatarBackground(color) }}
     >
-      <Icon name={icon} className={size === "md" ? "size-[18px]" : "size-3"} />
+      {avatar === "icon" ? (
+        <Icon name={icon} className={size === "md" ? "size-[18px]" : "size-3"} />
+      ) : (
+        avatarLetter(row)
+      )}
       {busy ? (
         <span
           data-lane={row.lane ?? undefined}

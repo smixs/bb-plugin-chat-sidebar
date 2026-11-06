@@ -18,7 +18,7 @@ import { PALETTE } from "@/lib/colors";
 import type { MessageKey } from "@/lib/i18n";
 import type { Chat } from "@/lib/model";
 import { laneOf } from "@/lib/status";
-import { useT } from "./chat-context";
+import { useChat, useT } from "./chat-context";
 import { useChatIcons } from "./chat-icons";
 import { useProjectColors } from "./project-colors";
 import { useRowActions } from "./row-actions";
@@ -42,6 +42,7 @@ export function ChatMenu({
   onRename: () => void;
 }) {
   const t = useT();
+  const { settings } = useChat();
   const sdk = useSdk();
   const navigate = useBbNavigate();
   const { colorOf, pickOf, setColor } = useProjectColors();
@@ -125,16 +126,18 @@ export function ChatMenu({
     });
   }
 
-  inline.push({
-    key: "chat-icon",
-    group: GROUPS.settings,
-    action: {
-      label: t("menu.chatIcon"),
-      detail: chatIcons.pickOf(thread.id) === null ? t("chatIcon.autoShort") : undefined,
-      icon: chatIcons.iconOf(thread.id, thread.displayTitle),
-      run: () => chatIcons.openPicker({ id: thread.id, title: thread.displayTitle }),
-    },
-  });
+  if (settings.avatar === "icon") {
+    inline.push({
+      key: "chat-icon",
+      group: GROUPS.settings,
+      action: {
+        label: t("menu.chatIcon"),
+        detail: chatIcons.pickOf(thread.id) === null ? t("chatIcon.autoShort") : undefined,
+        icon: chatIcons.iconOf(thread.id, thread.displayTitle),
+        run: () => chatIcons.openPicker({ id: thread.id, title: thread.displayTitle }),
+      },
+    });
+  }
 
   inline.push({
     key: "row-actions",

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.9-icons.2
+
+- New setting **Chat avatar**: **Project letter** (default, as before) or
+  **Icon from the title**. The **Chat icon…** menu item shows only with icons.
+
 ## 0.2.9-icons.1
 
 - Each chat's avatar shows an icon instead of a letter. The icon comes from
